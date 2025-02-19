@@ -20,7 +20,6 @@ class Maze():
         y_start = self._cell_size_y
         for i in range(self._num_cols):
             self._cells.append([Cell(self._win)] * self._num_rows)
-        print(self._cells)
         for col in self._cells:
             self._y1 = y_start
             for cell in col:
@@ -30,6 +29,8 @@ class Maze():
             self._x1 += self._cell_size_x
 
     def _draw_cell(self, i, j):
+        if self._win == None:
+            return
         x1 = self._x1
         y1 = self._y1
         x2 = self._x1 + i

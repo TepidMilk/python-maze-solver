@@ -14,6 +14,8 @@ class Cell():
         
     """method allowing cell to draw itself"""
     def draw(self, x1, y1, x2, y2):
+        if self._win == None:
+            return
         self._x1 = x1
         self._y1 = y1
         self._x2 = x2
