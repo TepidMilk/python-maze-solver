@@ -1,7 +1,7 @@
 from line import Line
 from point import Point
 class Cell():
-    def __init__(self, win):
+    def __init__(self, win = None):
         self.has_l_wall = True
         self.has_r_wall = True
         self.has_t_wall = True
@@ -36,12 +36,10 @@ class Cell():
         fill_color = "red"
         if undo == True:
             fill_color = "grey"
-        print(self._x1, self._x2)
         from_x = (self._x1 + self._x2) // 2 
         from_y = (self._y1 + self._y2) // 2
         to_x = (to_cell._x1 + to_cell._x2) // 2
         to_y = (to_cell._y1 + to_cell._y2) // 2
-        print(from_x, from_y)
         line = Line(Point(from_x, from_y), Point(to_x, to_y))
         self._win.draw_line(line, fill_color)
         
