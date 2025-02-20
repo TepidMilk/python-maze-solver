@@ -2,6 +2,7 @@ from line import Line
 from point import Point
 class Cell():
     def __init__(self, win = None):
+        self.visited = False
         self.has_l_wall = True
         self.has_r_wall = True
         self.has_t_wall = True
