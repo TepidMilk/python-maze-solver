@@ -13,11 +13,13 @@ class Maze():
         self._win = win
         self._cells = []
         self.current = None
-        
-        self._create_cells()
     
     def _create_cells(self):
         y_start = self._cell_size_y
+        if self._num_cols < 2 or self._num_rows < 2:
+            raise Exception("Invalid Maze Size")
+        if self._cell_size_x < 10 or self._cell_size_y < 10:
+            raise Exception("Invalid Cell Size")
         for i in range(self._num_cols):
             self._cells.append([Cell(self._win)] * self._num_rows)
         for col in self._cells:
