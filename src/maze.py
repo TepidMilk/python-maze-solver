@@ -75,7 +75,6 @@ class Maze():
             if len(to_visit) == 0:
                 self._draw_cell(i, j)
                 return
-            print(to_visit)
             direction = random.choice(to_visit)
             if direction == left:
                 self._cells[i][j].has_l_wall = False
