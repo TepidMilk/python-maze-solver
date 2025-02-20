@@ -20,18 +20,30 @@ class Cell():
         self._y1 = y1
         self._x2 = x2
         self._y2 = y2
-        if self.has_l_wall:
-            line = Line(Point(x1, y1), Point(x1, y2))
-            self._win.draw_line(line, "black")
-        if self.has_t_wall:
-            line = Line(Point(x1, y1), Point(x2, y1))
-            self._win.draw_line(line, "black")
         if self.has_b_wall:
             line = Line(Point(x1, y2), Point(x2, y2))
             self._win.draw_line(line, "black")
+        elif not self.has_b_wall:
+            line = Line(Point(x1, y2), Point(x2, y2))
+            self._win.draw_line(line, "white")
+        if self.has_t_wall:
+            line = Line(Point(x1, y1), Point(x2, y1))
+            self._win.draw_line(line, "black")
+        elif not self.has_t_wall:
+            line = Line(Point(x1, y1), Point(x2, y1))
+            self._win.draw_line(line, "white")
+        if self.has_l_wall:
+            line = Line(Point(x1, y1), Point(x1, y2))
+            self._win.draw_line(line, "black")
+        elif not self.has_l_wall == False:
+            line = Line(Point(x1, y1), Point(x1, y2))
+            self._win.draw_line(line, "white")
         if self.has_r_wall:
             line = Line(Point(x2, y1), Point(x2, y2))
             self._win.draw_line(line, "black")
+        elif not self.has_r_wall:
+            line = Line(Point(x2, y1), Point(x2, y2))
+            self._win.draw_line(line, "white")
     
     """Draws a line showing a move from one cell to another"""
     def draw_move(self, to_cell, undo=False):
