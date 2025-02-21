@@ -48,7 +48,7 @@ class Cell():
     
     """Draws a line showing a move from one cell to another"""
     def draw_move(self, to_cell, undo=False):
-        fill_color = "#93E9BE"
+        fill_color = "blue"
         if undo == True:
             fill_color = "red"
         from_x = (self._x1 + self._x2) // 2 
