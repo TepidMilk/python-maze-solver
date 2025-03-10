@@ -45,17 +45,19 @@ class Maze():
         time.sleep(0.01)
 
     def _break_entrance_and_exit(self):
-        i = random.randrange(0, self._num_cols)
-        if not i == 0 or not i == self._num_cols - 1:
-            j = random.choice([0, self._num_rows - 1])
-        else:
+        i = random.choice([0, self._num_cols - 1])
+        i = random.choice([i, random.randrange(1, self._num_cols - 2)])
+        if i == 0 or i == self._num_cols - 1:
             j = random.randrange(0, self._num_rows)
-        
+        else:
+            j = random.choice([0, self._num_rows - 1])
         self._entrance = (i, j)        
-        midpoint_x = self._num_cols // 2
-        midpoint_y = self._num_rows // 2
+        midpoint_x = self._num_cols / 2
+        midpoint_y = self._num_rows / 2
         ei = midpoint_x + (midpoint_x - i - 1)
         ej = midpoint_y + (midpoint_y - j - 1)
+        ei = int(ei)
+        ej = int(ej)
         self._exit = (ei, ej)
         exit = self._cells[ei][ej]
 
