@@ -30,6 +30,24 @@ class Maze():
             for j in range(self._num_rows):
                 self._draw_cell(i,j)
 
+    def _create_adjaceny_list(self):
+        adjaceny_list = {}
+        for i in range(self._num_cols):
+            for j in range(self._num_rows):
+                current = self._cells[i][j]
+                if current not in adjaceny_list:
+                    adjaceny_list[current] = []
+                if current.has_l_wall == False and i != 0:
+                    adjaceny_list[current].append(self._cells[i-1][j])
+                if current.has_t_wall == False and j != 0:
+                    adjaceny_list[current].append(self._cells[i][j-1])
+                if current.has_r_wall == False and i != self._num_cols - 1:
+                    adjaceny_list[current].append(self._cells[i+1][j])
+                if current.has_b_wall == False and j != self._num_rows - 1:
+                    adjaceny_list[current].append(self._cells[i][j+1])
+        return adjaceny_list
+
+
     def _draw_cell(self, i, j):
         if self._win == None:
             return
@@ -158,4 +176,24 @@ class Maze():
             else:
                 self._cells[i][j].draw_move(self._cells[i][j-1], True)
         return False
+    
+    def _solve_bsf(self):
+        adjaceny_list = self._create_adjaceny_list()
+        to_visit = []
+        to_visit.append(self._cells[self._entrance[0]][self._entrance[1]])
+        current = to_visit[0]
+        while to_visit:
+            self._animate()
+            current.visited = True
+            current = to_visit.pop(0)
+            sorted_neighbors = adjaceny_list[current]
+            for neighbor in sorted_neighbors:
+                if neighbor == self._cells[self._exit[0]][self._exit[1]]:
+                    current.draw_move(neighbor)
+                    return
+                if neighbor.visited == False and neighbor not in to_visit:
+                    current.draw_move(neighbor)
+                    to_visit.append(neighbor)
+        return
+        
         
