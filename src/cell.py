@@ -36,7 +36,7 @@ class Cell():
         if self.has_l_wall:
             line = Line(Point(x1, y1), Point(x1, y2))
             self._win.draw_line(line, "black")
-        elif not self.has_l_wall == False:
+        elif not self.has_l_wall:
             line = Line(Point(x1, y1), Point(x1, y2))
             self._win.draw_line(line, "white")
         if self.has_r_wall:
